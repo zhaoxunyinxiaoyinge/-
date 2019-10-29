@@ -7,7 +7,7 @@
         <router-link to="/movie/teshe">特色<span class="select"></span></router-link>
       </div>
       <keep-alive>
-        <router-view></router-view>
+        <router-view :datas="detailList"></router-view>
       </keep-alive>   
         <Footer/>
     </div>
@@ -17,6 +17,19 @@ import Header from "@/components/Header"
 import Footer from "@/components/Footer"
 export default {
     name:"movie",
+        data(){
+        return {
+            detailList:[]
+        } 
+    },
+    created(){
+        this.axios.get("/api/cinemaList?cityId=10").then(res=>{
+            let msg=res.data.msg;
+                if(msg==="ok"){
+                  this.detailList=res.data.data.cinemas;
+                }
+        })
+    },
     components:{
         Header,
         Footer

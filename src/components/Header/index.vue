@@ -4,6 +4,7 @@
     </div>
 </template>
 <script>
+
 export default {
    name:"Header",
    props:{
@@ -11,7 +12,7 @@ export default {
            type:String,
            default:""
        }
-   }
+   },
 }
 </script>
 <style scoped>

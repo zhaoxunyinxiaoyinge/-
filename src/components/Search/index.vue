@@ -1,5 +1,6 @@
 <template>
-<div class="search-body">
+<div class="search-body" ref="search">
+  <Scroll>
     <div class="search">
         <p class="search-input"><input type="text" v-model="args" placeholder="搜索电影" name="" id=""/><span class="iconfont icon-chaxun"></span></p>
         <p class="search-films">电影/电视剧/综艺</p>
@@ -18,9 +19,11 @@
             </li>
         </ul>
     </div>
+  </Scroll>
 </div> 
 </template>
 <script>
+import Bscroll from "better-scroll"
 export default {
   name: "search",
   data() {
@@ -41,7 +44,7 @@ export default {
         var that=this;
        this.requestcancl();
       this.axios
-        .get("/api/searchList?cityId=10&kw=" + newValue, {
+        .get("/api/searchList?cityId="+this.$store.state.id+"&kw=" + newValue, {
           cancelToken: new this.axios.CancelToken(function executor(c){
             that.source=c;
           })
@@ -68,7 +71,7 @@ export default {
 </script>
 <style scoped>
 div.search-body {
-  overflow: auto;
+  overflow:hidden;
   height: 600px;
 }
 p.search-input {

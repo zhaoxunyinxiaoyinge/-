@@ -19,11 +19,14 @@ export default {
     name:"movie",
         data(){
         return {
-            detailList:[]
+            detailList:[],
+            prevId:-1
         } 
     },
-    created(){
-        this.axios.get("/api/cinemaList?cityId=10").then(res=>{
+   mounted(){
+        let id=this.$store.state.id;
+        if(this.prevId==id){return ;}
+        this.axios.get("/api/cinemaList?cityId="+id).then(res=>{
             let msg=res.data.msg;
                 if(msg==="ok"){
                   this.detailList=res.data.data.cinemas;

@@ -1,7 +1,9 @@
 <template>
-<div class="comsoon-body">
+<div class="comsoon-body" ref="comsoon">
+  <Scroll>
     <div class="comsoon">
           <ul class="movie">
+            <Loading v-if="comingList.length===0"/>
             <li v-for="item in comingList" :key="item.id">
               <figure>
                 <img :src="item.img| makeImage" alt=""/>
@@ -16,19 +18,25 @@
             </li>
         </ul> 
     </div>
+  </Scroll>
 </div>
 </template>
 <script>
+import Bscroll from "better-scroll"
 export default {
     name:"comsoon",
     data(){
       return {
-        comingList:[]
+        comingList:[],
+        prevId:-1
       }
     },
-    mounted(){
-      this.axios.get("/api/movieComingList?cityId=10").then(res=>{
+   activated(){
+    let id=this.$store.state.id 
+    if(this.prevId===id){return ;}
+      this.axios.get("/api/movieComingList?cityId="+id).then(res=>{
         this.comingList=res.data.data.comingList;
+        this.prevId=id;
       })
     },
      filters:{
@@ -42,7 +50,7 @@ export default {
 }
 </script>
 <style scoped>
-    div.comsoon-body {height:600px;overflow:auto;}
+    div.comsoon-body {height:600px;overflow:hidden;}
     li {display:flex;align-items: center;justify-content: space-around;padding: 20px 0 0;}
     li figure{display:flex;justify-content: space-between;align-items: flex-start;} 
     li figure img {height:100px;}

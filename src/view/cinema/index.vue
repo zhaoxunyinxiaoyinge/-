@@ -2,7 +2,7 @@
     <div id="cinema">
       <Header name="非凡电影"/>
       <div class="router-link">
-        <router-link  to="/cinema/city">城市<span class="select"></span></router-link>
+        <router-link  to="/cinema/city">{{this.$store.state.nm}}<span class="select"></span></router-link>
         <router-link to="/cinema/nowplay">正在热映</router-link>
         <router-link to="/cinema/comsoon">不久上映</router-link>
         <router-link to="/cinema/search"><span class="iconfont icon-chaxun"></span></router-link>
@@ -16,12 +16,14 @@
 <script>
 import Header from "@/components/Header"
 import Footer from "@/components/Footer"
+
 export default {
     name:"cinema",
     components:{
         Header,
         Footer
-    }
+    },
+   
 }
 </script>
 <style>

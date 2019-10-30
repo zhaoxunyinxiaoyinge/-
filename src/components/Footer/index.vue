@@ -1,5 +1,5 @@
 <template>
-    <div class="footer">
+    <div class="footers">
         <ul>
             <router-link tag="li" to="/cinema">
                 <i class="iconfont icon-yingyuan"></i>
@@ -18,11 +18,11 @@
 </template>
 <script>
 export default {
-  name: "footer"
+  name: "footers"
 };
 </script>
 <style scoped>
-.footer {
+.footers {
   position: fixed;
   bottom: 0;
   left: 0;
@@ -31,25 +31,25 @@ export default {
   border-top:1px solid #eee;
   background: #fff;
 }
-.footer ul {
+.footers ul {
   display: flex;
   align-items: center;
   justify-content: space-around;
 }
-.footer li {
+.footers li {
   flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: center;
   cursor: pointer;
 }
-.footer li.router-link-active {
+.footers li.router-link-active {
   color :red
 }
-.footer li i {
+.footers li i {
   font-style: normal;
 }
-.footer li span {
+.footers li span {
   font-size: 12px;
 }
 </style>
